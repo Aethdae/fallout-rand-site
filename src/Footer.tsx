@@ -1,4 +1,4 @@
-function Footer() {
+function Footer({ gameState }) {
   return (
     <>
       <footer className="footer">

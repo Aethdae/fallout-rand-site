@@ -1,3 +1,5 @@
-button {
-  background: border-box radial-gradient(red, white);
+@import "tailwindcss";
+
+.activeGame {
+  border: white 2px solid;
 }

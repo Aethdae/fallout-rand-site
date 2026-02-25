@@ -1,37 +1,53 @@
-const gameNavItems = document.getElementsByClassName("gameNavItem");
 import { useState } from "react";
 import "./Header.css";
+const states = ["falloutThree", "falloutNewVegas", "falloutFour"];
+const buttonClass = [
+  "text-black",
+  "font-bold",
+  "gameNavItem",
+  "w-[10rem]",
+  "rounded-xl",
+  "shadow-sm",
+];
 
-export default function Header() {
-  const [game, setGame] = useState("falloutThree");
+export default function Header({ gameState }) {
   return (
     <>
       <header className="header">
         <h1>Fallout Randomizer</h1>
-        <nav className="gameNavBar">
+        <nav className="flex gap-6 justify-center">
           <button
-            className="gameNavItem activeGame"
+            className={buttonClass.join(" ") + " bg-[#22FF22] activeGame"}
             id="falloutThree"
             onClick={() => {
-              setActiveGame("falloutThree");
+              gameState[1](states[0]);
+              removeClasses();
+              addClass("falloutThree");
+              //sendStateToParent(states[0]);
             }}
           >
             FO:3
           </button>
           <button
-            className="gameNavItem"
+            className={buttonClass.join(" ") + " bg-orange-300"}
             id="falloutNV"
             onClick={() => {
-              setActiveGame("falloutNV");
+              gameState[1](states[1]);
+              removeClasses();
+              addClass("falloutNV");
+              //sendStateToParent(states[1]);
             }}
           >
             FO:NV
           </button>
           <button
-            className="gameNavItem"
+            className={buttonClass.join(" ") + " bg-[red]"}
             id="falloutFour"
             onClick={() => {
-              setActiveGame("falloutFour");
+              gameState[1](states[2]);
+              removeClasses();
+              addClass("falloutFour");
+              //sendStateToParent(states[2]);
             }}
           >
             FO:4
@@ -40,14 +56,13 @@ export default function Header() {
       </header>
     </>
   );
-
-  function setActiveGame(id: string) {
-    for (let x = 0; x < gameNavItems.length; x++) {
-      gameNavItems[x].className = "gameNavItem";
-    }
-    const element = document.getElementById(id);
-    element.className += " activeGame";
-    setGame(id);
-    console.log(game);
+  function removeClasses() {
+    const elements = document.querySelectorAll(".gameNavItem");
+    elements.forEach((element) => {
+      element.classList.remove("activeGame");
+    });
+  }
+  function addClass(id) {
+    document.getElementById(id)?.classList.add("activeGame");
   }
 }
