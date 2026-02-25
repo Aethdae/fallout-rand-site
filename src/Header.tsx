@@ -11,13 +11,18 @@ const buttonClass = [
 ];
 
 export default function Header({ gameState }) {
+  let bgColor = "";
+  switch (gameState[0]) {
+  }
   return (
     <>
-      <header className="header">
-        <h1>Fallout Randomizer</h1>
-        <nav className="flex gap-6 justify-center">
+      <header className="font-size">
+        <h1 className="font-(family-name:--font-fixed-sys) text-3xl mb-2 bg-amber-100">
+          Fallout Randomizer
+        </h1>
+        <nav className="flex gap-6 justify-around">
           <button
-            className={buttonClass.join(" ") + " bg-[#22FF22] activeGame"}
+            className={buttonClass.join(" ") + " bg-three-500 activeGame"}
             id="falloutThree"
             onClick={() => {
               gameState[1](states[0]);
@@ -29,7 +34,7 @@ export default function Header({ gameState }) {
             FO:3
           </button>
           <button
-            className={buttonClass.join(" ") + " bg-orange-300"}
+            className={buttonClass.join(" ") + " bg-vegas-500"}
             id="falloutNV"
             onClick={() => {
               gameState[1](states[1]);
@@ -41,7 +46,7 @@ export default function Header({ gameState }) {
             FO:NV
           </button>
           <button
-            className={buttonClass.join(" ") + " bg-[red]"}
+            className={buttonClass.join(" ") + " bg-four-500"}
             id="falloutFour"
             onClick={() => {
               gameState[1](states[2]);

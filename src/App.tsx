@@ -7,7 +7,7 @@ const states = ["falloutThree", "falloutNewVegas", "falloutFour"];
 export default function App() {
   const [gameState, setGame] = useState(states[0]);
   return (
-    <div className="mw-[120rem] mx-0 my-auto text-center">
+    <div className="bg-gray-800 mw-[120rem] mx-0 my-auto text-center">
       <Header gameState={[gameState, setGame]} />
       <Game gameState={[gameState, setGame]} />
       <Footer gameState={[gameState, setGame]} />

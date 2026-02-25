@@ -1,12 +1,24 @@
 @import "tailwindcss";
 
-#root {
+@font-face {
+  font-family: "JH_Fallout";
+  src: url("fonts/jhfont.TTF");
+}
+
+@font-face {
+  font-family: "Fixedsys Excelsior";
+  src: url("fonts/fsex.ttf");
+}
+
+@theme {
+  --color-three-500: oklch(0.7559 0.2812 145.06);
+  --color-vegas-500: rgb(255, 182, 66);
+  --color-four-500: rgb(26, 255, 128);
+  --font-fallout: "JH_Fallout";
+  --font-fixed-sys: "Fixedsys Excelsior";
 }
 
 :root {
-  color-scheme: dark;
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  font-family: var(--font-fallout);
+  background-color: #333;
 }
