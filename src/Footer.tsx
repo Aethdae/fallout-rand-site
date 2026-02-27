@@ -3,6 +3,7 @@ const buttonClasses = [
   "active:bg-white active:text-black transition-all duration-100 ease-in mb-4",
 ];
 
+// @ts-ignore
 function Footer({ gameState }) {
   return (
     <>

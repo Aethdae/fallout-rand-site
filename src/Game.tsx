@@ -4,6 +4,7 @@ import FNV from "./FNV.tsx";
 import { useState } from "react";
 const states = ["three", "vegas", "four"];
 
+// @ts-ignore
 export default function Game({ gameState }) {
   (async function getData() {
     try {
@@ -49,6 +50,7 @@ export default function Game({ gameState }) {
     );
   }
 
+  // @ts-ignore
   function CheckLabel({ buttonType, buttonName }) {
     const [checked, setCheck] = useState(false);
     let color = checked ? "green" : "gray";

@@ -13,7 +13,4 @@ export default function App() {
       <Footer gameState={[gameState, setGame]} />
     </div>
   );
-  function getCurrentState(data) {
-    setGame(data);
-  }
 }

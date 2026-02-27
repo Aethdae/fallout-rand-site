@@ -19,6 +19,7 @@ const buttonClass = [
   "outline-1",
 ];
 
+// @ts-ignore
 export default function Header({ gameState }) {
   return (
     <>
@@ -75,6 +76,7 @@ export default function Header({ gameState }) {
       element.classList.remove("activeGame");
     });
   }
+  // @ts-ignore
   function addClass(id) {
     document.getElementById(id)?.classList.add("activeGame");
     //localStorage.setItem(k,p);
