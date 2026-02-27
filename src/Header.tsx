@@ -18,9 +18,15 @@ const buttonClass = [
   "ease-in-out",
   "outline-1",
 ];
+const bgColorStates = {
+  three: "bg-three-300",
+  vegas: "bg-vegas-300",
+  four: "bg-four-300",
+};
 
 // @ts-ignore
 export default function Header({ gameState }) {
+  console.log(gameState);
   return (
     <>
       <header className="bg-gray-800 flex flex-col items-center">
@@ -28,7 +34,8 @@ export default function Header({ gameState }) {
           Fallout Randomizer
         </h1>
         <nav
-          className={`flex gap-6 my-2 p-3 border-2 w-full min-w-20 max-w-300 bg-${gameState[0]}-300 rounded-2xl justify-around`}
+          //@ts-ignore
+          className={`flex gap-6 my-2 p-3 border-2 w-full min-w-20 max-w-300 ${bgColorStates[gameState[0]]} rounded-2xl justify-around`}
         >
           <button
             className={buttonClass.join(" ") + " bg-three-500 activeGame"}

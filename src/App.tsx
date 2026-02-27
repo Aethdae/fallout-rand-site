@@ -5,7 +5,7 @@ import Footer from "./Footer.tsx";
 const states = ["three", "vegas", "four"];
 
 export default function App() {
-  const [gameState, setGame] = useState(states[0]);
+  const [gameState, setGame] = useState<"three" | "vegas" | "four">("three");
   return (
     <div className="bg-gray-800 mw-[120rem] mx-0 my-auto text-center">
       <Header gameState={[gameState, setGame]} />

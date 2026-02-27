@@ -3,6 +3,11 @@ import FO3 from "./FO3.tsx";
 import FNV from "./FNV.tsx";
 import { useState } from "react";
 const states = ["three", "vegas", "four"];
+const bgColorStates = {
+  three: "bg-three-300",
+  vegas: "bg-vegas-300",
+  four: "bg-four-300",
+};
 
 // @ts-ignore
 export default function Game({ gameState }) {
@@ -42,7 +47,8 @@ export default function Game({ gameState }) {
     return (
       <>
         <div
-          className={`border-2 bg-${gameState[0]}-300 rounded-xl w-full p-2 md:w-40`}
+          //@ts-ignore
+          className={`border-2 ${bgColorStates[gameState[0]]} rounded-xl w-full p-2 md:w-40`}
         >
           Roll!
         </div>
@@ -53,8 +59,9 @@ export default function Game({ gameState }) {
   // @ts-ignore
   function CheckLabel({ buttonType, buttonName }) {
     const [checked, setCheck] = useState(false);
-    let color = checked ? "green" : "gray";
-    let labelClasses = `p-2 outline-3 bg-${color}-300 accent-red-900 rounded-lg hover:bg-${color}-200 cursor-pointer`;
+    const color = checked ? "bg-green-300" : "bg-gray-300";
+    const bgColor = checked ? "hover:bg-green-200" : "hover:bg-gray-200";
+    const labelClasses = `p-2 outline-3 ${color} accent-red-900 rounded-lg ${bgColor} cursor-pointer`;
 
     return (
       <>
