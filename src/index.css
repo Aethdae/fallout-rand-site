@@ -12,8 +12,11 @@
 
 @theme {
   --color-three-500: oklch(0.7559 0.2812 145.06);
-  --color-vegas-500: rgb(255, 182, 66);
-  --color-four-500: rgb(26, 255, 128);
+  --color-vegas-500: oklch(0.8259 0.1515 74.76);
+  --color-four-500: oklch(0.8762 0.2327 150.85);
+  --color-three-300: oklch(0.55 0.2812 145.06);
+  --color-vegas-300: oklch(0.6259 0.1515 74.76);
+  --color-four-300: oklch(0.6762 0.2327 150.85);
   --font-fallout: "JH_Fallout";
   --font-fixed-sys: "Fixedsys Excelsior";
 }

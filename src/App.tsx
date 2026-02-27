@@ -2,7 +2,7 @@ import Header from "./Header.tsx";
 import Game from "./Game.tsx";
 import { useState } from "react";
 import Footer from "./Footer.tsx";
-const states = ["falloutThree", "falloutNewVegas", "falloutFour"];
+const states = ["three", "vegas", "four"];
 
 export default function App() {
   const [gameState, setGame] = useState(states[0]);

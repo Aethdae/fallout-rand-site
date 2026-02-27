@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Header.css";
-const states = ["falloutThree", "falloutNewVegas", "falloutFour"];
+const states = ["three", "vegas", "four"];
 const buttonClass = [
   "text-black",
   "font-bold",
@@ -8,19 +8,27 @@ const buttonClass = [
   "w-[10rem]",
   "rounded-xl",
   "shadow-sm",
+  "border-black",
+  "hover:border-2",
+  "hover:border-gray-50",
+  "hover:bg-black",
+  "hover:text-white",
+  "hover:w-[calc(width*.50)]",
+  "transition-all",
+  "duration-100",
+  "ease-in-out",
 ];
 
 export default function Header({ gameState }) {
-  let bgColor = "";
-  switch (gameState[0]) {
-  }
   return (
     <>
-      <header className="font-size">
-        <h1 className="font-(family-name:--font-fixed-sys) text-3xl mb-2 bg-amber-100">
+      <header className="bg-gray-800 flex flex-col items-center">
+        <h1 className="font-(family-name:--font-fixed-sys) text-3xl bg-amber-100 w-full">
           Fallout Randomizer
         </h1>
-        <nav className="flex gap-6 justify-around">
+        <nav
+          className={`flex gap-6 my-2 p-3 border-2 w-full min-w-20 max-w-300 bg-${gameState[0]}-300 rounded-2xl justify-around`}
+        >
           <button
             className={buttonClass.join(" ") + " bg-three-500 activeGame"}
             id="falloutThree"
@@ -69,5 +77,6 @@ export default function Header({ gameState }) {
   }
   function addClass(id) {
     document.getElementById(id)?.classList.add("activeGame");
+    //localStorage.setItem(k,p);
   }
 }
