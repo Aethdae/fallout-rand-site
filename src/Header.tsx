@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./Header.css";
 const states = ["three", "vegas", "four"];
 const buttonClass = [
@@ -17,6 +16,7 @@ const buttonClass = [
   "transition-all",
   "duration-100",
   "ease-in-out",
+  "outline-1",
 ];
 
 export default function Header({ gameState }) {
