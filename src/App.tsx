@@ -2,6 +2,7 @@ import Header from "./Header.tsx";
 import Game from "./Game.tsx";
 import { useState } from "react";
 import Footer from "./Footer.tsx";
+//@ts-ignore
 const states = ["three", "vegas", "four"];
 
 export default function App() {
