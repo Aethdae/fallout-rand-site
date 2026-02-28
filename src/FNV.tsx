@@ -1,10 +1,11 @@
 import "./App.css";
 
-export default function FNV({ isActive = true }) {
+//@ts-ignore
+export default function FNV({ children, isActive = true }) {
   if (isActive) {
     return (
-      <section className="bg-vegas-500">
-        <p>placeholderFNV</p>
+      <section className='bg-[url("./images/fnv-box.png")] bg-top h-full bg-no-repeat md:bg-cover flex justify-center p-2'>
+        {children}
       </section>
     );
   } else {

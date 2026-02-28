@@ -26,7 +26,6 @@ const bgColorStates = {
 
 // @ts-ignore
 export default function Header({ gameState }) {
-  console.log(gameState);
   return (
     <>
       <header className="bg-gray-800 flex flex-col items-center">
@@ -44,7 +43,6 @@ export default function Header({ gameState }) {
               gameState[1](states[0]);
               removeClasses();
               addClass("falloutThree");
-              //sendStateToParent(states[0]);
             }}
           >
             FO:3
@@ -56,7 +54,6 @@ export default function Header({ gameState }) {
               gameState[1](states[1]);
               removeClasses();
               addClass("falloutNV");
-              //sendStateToParent(states[1]);
             }}
           >
             FO:NV
@@ -68,7 +65,6 @@ export default function Header({ gameState }) {
               gameState[1](states[2]);
               removeClasses();
               addClass("falloutFour");
-              //sendStateToParent(states[2]);
             }}
           >
             FO:4
