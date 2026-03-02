@@ -31,6 +31,7 @@ export default function Game({ gameState }) {
     }
     if (targ.challengeCheck.checked) {
       console.log("Challenges!");
+      console.log(targ.challengeNumberSelect.value);
     }
     if (targ.specialCheck.checked) {
       console.log("SPECIAL!");
@@ -38,7 +39,6 @@ export default function Game({ gameState }) {
     if (targ.skillsCheck.checked) {
       console.log("Skills!");
     }
-    console.log(targ.challengeNumberSelect.value);
   }
 
   function ClassForm() {
@@ -64,7 +64,7 @@ export default function Game({ gameState }) {
               stateHandler={[isDropdownShown, setDropdown]}
             />
             {isDropdownShown ? (
-              <div className="flex justify-center">
+              <div className="flex justify-center w-full">
                 <label className="p-2 outline-3 bg-gray-200 rounded-lg">
                   <select
                     className="mr-1.5 bg-gray-950 text-white p-.5 rounded-sm"
@@ -75,7 +75,7 @@ export default function Game({ gameState }) {
                     <option value="2">2</option>
                     <option value="3">3</option>
                   </select>
-                  {"Challenges"}
+                  {"Challenge(s)"}
                 </label>
               </div>
             ) : (
@@ -97,7 +97,7 @@ export default function Game({ gameState }) {
       <>
         <button
           //@ts-ignore
-          className={`border-2 ${bgColorStates[gameState[0]]} rounded-xl w-full p-2 md:w-40 cursor-pointer`}
+          className={`border-2 ${bgColorStates[gameState[0]]} rounded-xl w-full max-w-80 my-4 p-2 md:my-6 md:w-50 md:p-4 cursor-pointer`}
         >
           Roll!
         </button>
@@ -110,31 +110,7 @@ export default function Game({ gameState }) {
     const [checked, setCheck] = useState(false);
     const color = checked ? "bg-green-300" : "bg-gray-300";
     const bgColor = checked ? "hover:bg-green-200" : "hover:bg-gray-200";
-    const labelClasses = `p-2 outline-3 ${color} accent-black rounded-lg ${bgColor} cursor-pointer`;
-
-    // if (isChecked) {
-    //   return (
-    //     <>
-    //       <div className="flex justify-center">
-    //         <label className={labelClasses}>
-    //           <input
-    //             className="mr-3"
-    //             type="checkbox"
-    //             name={buttonType}
-    //             id={buttonType}
-    //             checked={isChecked}
-    //             onClick={() => {
-    //               setCheck(!checked);
-    //               isChecked = true;
-    //             }}
-    //           />
-    //           {"Random " + buttonName}
-    //         </label>
-    //       </div>
-    //     </>
-    //   );
-    // }
-    // else
+    const labelClasses = `p-2 w-[90%] outline-3 ${color} accent-black rounded-lg ${bgColor} cursor-pointer md:w-50 max-w-80`;
 
     return (
       <>
@@ -161,14 +137,14 @@ export default function Game({ gameState }) {
     const [checked, setCheck] = useState(false);
     const color = checked ? "bg-green-300" : "bg-gray-300";
     const bgColor = checked ? "hover:bg-green-200" : "hover:bg-gray-200";
-    const labelClasses = `p-2 outline-3 ${color} accent-black rounded-lg ${bgColor} cursor-pointer`;
+    const labelClasses = `p-2 w-[90%] outline-3 ${color} accent-black rounded-lg ${bgColor} cursor-pointer md:w-50 max-w-80`;
 
     return (
       <>
         <div className="flex justify-center">
           <label className={labelClasses}>
             <input
-              className="mr-3"
+              className="mr-3 text-small"
               type="checkbox"
               name={buttonType}
               id={buttonType}
@@ -187,7 +163,7 @@ export default function Game({ gameState }) {
   switch (gameState[0]) {
     case states[0]:
       return (
-        <main className="h-[80vh] mt-3 l:h-[60vh]">
+        <main className="h-[70vh] mt-3 l:h-[60vh]">
           <FO3 children={<ClassForm />} />
         </main>
       );

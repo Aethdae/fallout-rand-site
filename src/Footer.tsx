@@ -8,9 +8,9 @@ function Footer({ gameState }) {
   return (
     <>
       {/* todo */}
-      <footer className="pb-[40vh] flex justify-center">
+      <footer className="py-10 flex flex-col justify-center md:py-20 lg:py-40">
         <nav className="flex justify-center h-full">
-          <div className="flex gap-2 mx-2 md:gap-6 md:mx-6 h-full items-bottom">
+          <div className="flex text-sm lg:text-3xl gap-2 mx-2 md:gap-6 md:mx-6 h-full items-bottom">
             <a
               href="https://github.com/Aethdae/fallout-rand-site"
               target="_blank"
@@ -27,6 +27,16 @@ function Footer({ gameState }) {
             </a>
           </div>
         </nav>
+        <p>
+          Box art images &copy;{" "}
+          <a className="text-three-500" href="https://bethesda.net">
+            Bethesda Softworks
+          </a>{" "}
+          &{" "}
+          <a className="text-vegas-500" href="https://www.obsidian.net/">
+            Obsidian Entertainment
+          </a>
+        </p>
       </footer>
     </>
   );
