@@ -29,7 +29,7 @@ export default function Header({ gameState }) {
   return (
     <>
       <header className="bg-gray-800 flex flex-col items-center">
-        <h1 className="font-(family-name:--font-fixed-sys) text-3xl bg-amber-100 w-full">
+        <h1 className="font-(family-name:--font-fixed-sys) text-3xl bg-amber-100 w-full lg:text-5xl xl:text-7xl">
           Fallout Randomizer
         </h1>
         <nav
