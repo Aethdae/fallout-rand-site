@@ -36,28 +36,10 @@ const checkBoxClasses = [
 ];
 
 export default function Game({ gameState }) {
-  const [randomized, setRandomized] = useState({
-    karma: "",
-    challenges: ["", "", ""],
-    special: [0, 0, 0, 0, 0, 0, 0],
-    skills: ["", "", ""],
-  });
-  (async function getData() {
-    try {
-      const res = await fetch(
-        "https://raw.githubusercontent.com/Aethdae/fallout-randomizer/refs/heads/main/data.json",
-      );
-      const data = await res.text();
-      localStorage.setItem("falloutRandomizerData", data);
-    } catch (err) {
-      console.warn(`Error getting JsonData: ${err}`);
-    }
-  })();
+  const [classRolled, setRolled] = useState(false);
+  const [randomized, setRandomized] = useState();
 
-  const children = [
-    <ClassForm key={0} />,
-    <RandClass key={1} randomizedClass={randomized[0]} />,
-  ];
+  const children = [<ClassForm key={0} />, <RandClass key={1} />];
 
   switch (gameState[0]) {
     case states[0]:
@@ -85,24 +67,24 @@ export default function Game({ gameState }) {
     </div>
   );
 
-  function RandClass(randomizedClass) {
-    const returnRand =
-      randomizedClass === !undefined ? (
+  function RandClass() {
+    if (classRolled) {
+      return (
         <>
-          <section>
+          <section className="text-white">
             <div>
               <p>RandomClass:</p>
             </div>
-            <div>{randomizedClass.karma}</div>
-            <div>{randomizedClass.challenges}</div>
-            <div>{randomizedClass.special}</div>
-            <div>{randomizedClass.skills}</div>
+            <div>{randomized.karma}</div>
+            <div>{randomized.challenges}</div>
+            <div>{randomized.special}</div>
+            <div>{randomized.skills}</div>
           </section>
         </>
-      ) : (
-        <></>
       );
-    return returnRand;
+    } else {
+      return <></>;
+    }
   }
 
   //@ts-ignore
@@ -140,17 +122,15 @@ export default function Game({ gameState }) {
           break;
       }
     }
-    console.log(randClass);
     setRandomized(randClass);
+    setRolled(true);
   }
 
   function ClassForm() {
     const [isDropdownShown, setDropdown] = useState(false);
-    document.getElementById("rollForm")?.addEventListener("submit", (event) => {
-      event.preventDefault();
-    });
+
     return (
-      <section className="bg-gray-700/40 border-4 rounded-2xl h-[32vh] px-3 md:h-[30vh] lg:h-[20vh]">
+      <section className="bg-gray-700/40 border-4 rounded-2xl h-[36vh] px-3 md:h-[30vh] lg:h-[20vh]">
         <form
           onSubmit={(event) => {
             event.preventDefault();
@@ -161,14 +141,14 @@ export default function Game({ gameState }) {
         >
           <div className="grid mt-6 grid-cols-1 gap-4 w-[60vw] md:grid-cols-1 md:w-[60vw] lg:w-[40vw]">
             <CheckLabel buttonType="karmaCheck" buttonName="Karma" />
+            <CheckLabel buttonType="specialCheck" buttonName="SPECIAL" />
+            <CheckLabel buttonType="skillsCheck" buttonName="Skills" />
             <CheckChallengeLabel
               buttonType="challengeCheck"
               buttonName="Challenge"
               stateHandler={[isDropdownShown, setDropdown]}
             />
-            {isDropdownShown ? <ChallengeDropDown /> : <></>}
-            <CheckLabel buttonType="specialCheck" buttonName="SPECIAL" />
-            <CheckLabel buttonType="skillsCheck" buttonName="Skills" />
+            {isDropdownShown && <ChallengeDropDown />}
           </div>
           <div className="flex justify-center mt-3">
             <ClassButton />
@@ -182,7 +162,6 @@ export default function Game({ gameState }) {
     return (
       <>
         <button
-          //@ts-ignore
           className={`border-2 ${bgColorStates[gameState[0]]} rounded-xl w-full max-w-80 my-4 p-2 md:my-6 md:w-50 md:p-4 cursor-pointer`}
         >
           Roll!
@@ -244,7 +223,9 @@ export default function Game({ gameState }) {
     const [checked, setCheck] = useState(false);
     const color = checked ? "bg-green-300" : "bg-gray-300";
     const bgColor = checked ? "hover:bg-green-200" : "hover:bg-gray-200";
-    const labelClasses = `p-2 w-[90%] outline-3 ${color} accent-black rounded-lg ${bgColor} cursor-pointer md:w-80 md:p-4 max-w-80 md:max-w-120 lg:w-120 lg:max-w-160`;
+    const labelClasses = stateHandler[0]
+      ? `p-2 w-[90%] outline-3 ${color} accent-black rounded-lg ${bgColor} cursor-pointer md:w-80 md:p-4 max-w-80 md:max-w-120 lg:w-120 lg:max-w-160`
+      : `p-2 w-[90%] mb-14 outline-3 ${color} accent-black rounded-lg ${bgColor} cursor-pointer md:w-80 md:p-4 max-w-80 md:max-w-120 lg:w-120 lg:max-w-160`;
 
     return (
       <>
