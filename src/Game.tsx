@@ -36,7 +36,12 @@ const checkBoxClasses = [
 ];
 
 export default function Game({ gameState }) {
-  const [randomized, setRandomized] = useState({});
+  const [randomized, setRandomized] = useState({
+    karma: "",
+    challenges: ["", "", ""],
+    special: [0, 0, 0, 0, 0, 0, 0],
+    skills: ["", "", ""],
+  });
   (async function getData() {
     try {
       const res = await fetch(
@@ -49,28 +54,28 @@ export default function Game({ gameState }) {
     }
   })();
 
+  const children = [
+    <ClassForm key={0} />,
+    <RandClass key={1} randomizedClass={randomized[0]} />,
+  ];
+
   switch (gameState[0]) {
     case states[0]:
       return (
         <main className="h-[70vh] mt-3 l:h-[60vh]">
-          <FO3 children={<ClassForm />} />
-          {randomized[0] == {} ? (
-            <RandClass randomizedClass={randomized[0]} />
-          ) : (
-            <></>
-          )}
+          <FO3 children={children} />
         </main>
       );
     case states[1]:
       return (
         <main className="h-[80vh] mt-3 l:h-[60vh]">
-          <FNV children={<ClassForm />} />
+          <FNV children={children} />
         </main>
       );
     case states[2]:
       return (
         <main className="h-[80vh] mt-3 l:h-[60vh]">
-          <FO4 children={<ClassForm />} />
+          <FO4 children={children} />
         </main>
       );
   }
@@ -81,17 +86,23 @@ export default function Game({ gameState }) {
   );
 
   function RandClass(randomizedClass) {
-    return (
-      <>
-        <div>
-          <p>RandomClass:</p>
-        </div>
-        <div>randomizedClass.karma</div>
-        <div>randomizedClass.challenges</div>
-        <div>randomizedClass.special</div>
-        <div>randomizedClass.skills</div>
-      </>
-    );
+    const returnRand =
+      randomizedClass === !undefined ? (
+        <>
+          <section>
+            <div>
+              <p>RandomClass:</p>
+            </div>
+            <div>{randomizedClass.karma}</div>
+            <div>{randomizedClass.challenges}</div>
+            <div>{randomizedClass.special}</div>
+            <div>{randomizedClass.skills}</div>
+          </section>
+        </>
+      ) : (
+        <></>
+      );
+    return returnRand;
   }
 
   //@ts-ignore
@@ -139,7 +150,7 @@ export default function Game({ gameState }) {
       event.preventDefault();
     });
     return (
-      <section className="bg-gray-700/40 border-4 rounded-2xl px-3">
+      <section className="bg-gray-700/40 border-4 rounded-2xl h-[32vh] px-3 md:h-[30vh] lg:h-[20vh]">
         <form
           onSubmit={(event) => {
             event.preventDefault();
@@ -148,7 +159,7 @@ export default function Game({ gameState }) {
           className=""
           id="rollForm"
         >
-          <div className="grid mt-6 grid-cols-1 gap-4 w-[80vw] md:grid-cols-1 md:w-[60vw] lg:w-[40vw]">
+          <div className="grid mt-6 grid-cols-1 gap-4 w-[60vw] md:grid-cols-1 md:w-[60vw] lg:w-[40vw]">
             <CheckLabel buttonType="karmaCheck" buttonName="Karma" />
             <CheckChallengeLabel
               buttonType="challengeCheck"
