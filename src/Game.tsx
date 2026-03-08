@@ -8,6 +8,7 @@ import { getKarma } from "./ClassRandomizer.ts";
 import { getChallenges } from "./ClassRandomizer.ts";
 import { getSpecial } from "./ClassRandomizer.ts";
 import { getSkills } from "./ClassRandomizer.ts";
+import RandClass from "./RandClass.tsx";
 const states = ["three", "vegas", "four"];
 const bgColorStates = {
   three: "bg-three-300",
@@ -36,16 +37,28 @@ const checkBoxClasses = [
 ];
 
 export default function Game({ gameState }) {
-  const [classRolled, setRolled] = useState(false);
-  const [randomized, setRandomized] = useState();
+  const [isClassRolled, setRolled] = useState(false);
+  const [randomized, setRandomized] = useState({
+    karma: "",
+    challenges: [],
+    special: [],
+    skills: [],
+  });
 
-  const children = [<ClassForm key={0} />, <RandClass key={1} />];
+  const children = [
+    <ClassForm key={0} />,
+    <RandClass key={1} randomized={randomized} />,
+  ];
 
   switch (gameState[0]) {
     case states[0]:
       return (
         <main className="h-[70vh] mt-3 l:h-[60vh]">
-          <FO3 children={children} />
+          <FO3
+            children={<ClassForm />}
+            randomized={randomized}
+            showClass={isClassRolled}
+          />
         </main>
       );
     case states[1]:
@@ -67,34 +80,14 @@ export default function Game({ gameState }) {
     </div>
   );
 
-  function RandClass() {
-    if (classRolled) {
-      return (
-        <>
-          <section className="text-white">
-            <div>
-              <p>RandomClass:</p>
-            </div>
-            <div>{randomized.karma}</div>
-            <div>{randomized.challenges}</div>
-            <div>{randomized.special}</div>
-            <div>{randomized.skills}</div>
-          </section>
-        </>
-      );
-    } else {
-      return <></>;
-    }
-  }
-
   //@ts-ignore
   function rollClass(event) {
     const targ = event.target;
     const randClass = {
       karma: "",
-      challenges: ["", "", ""],
-      special: [0, 0, 0, 0, 0, 0, 0],
-      skills: ["", "", ""],
+      challenges: [],
+      special: [],
+      skills: [],
     };
 
     //@ts-ignore
@@ -139,7 +132,7 @@ export default function Game({ gameState }) {
           className=""
           id="rollForm"
         >
-          <div className="grid mt-6 grid-cols-1 gap-4 w-[60vw] md:grid-cols-1 md:w-[60vw] lg:w-[40vw]">
+          <div className="grid mt-6 grid-cols-1 gap-4 w-[80vw] md:grid-cols-1 md:w-[60vw] lg:w-[40vw]">
             <CheckLabel buttonType="karmaCheck" buttonName="Karma" />
             <CheckLabel buttonType="specialCheck" buttonName="SPECIAL" />
             <CheckLabel buttonType="skillsCheck" buttonName="Skills" />
