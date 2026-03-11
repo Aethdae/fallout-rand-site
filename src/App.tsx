@@ -23,12 +23,14 @@ export default function App() {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await fetch(
-          "https://raw.githubusercontent.com/Aethdae/fallout-randomizer/refs/heads/main/data.json",
-        );
-        const data = await res.text();
-        console.log("Getting data");
-        localStorage.setItem("falloutRandomizerData", data);
+        if (localStorage.getItem("falloutRandomizerData") == null) {
+          const res = await fetch(
+            "https://raw.githubusercontent.com/Aethdae/fallout-randomizer/refs/heads/main/data.json",
+          );
+          const data = await res.text();
+          console.log("Getting data");
+          localStorage.setItem("falloutRandomizerData", data);
+        }
       } catch (err) {
         console.warn(`Error getting JsonData: ${err}`);
       }
