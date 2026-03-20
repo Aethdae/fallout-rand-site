@@ -23,7 +23,7 @@ export default function App() {
   useEffect(() => {
     async function getData() {
       try {
-        if (localStorage.getItem("falloutRandomizerData") == null) {
+        if (!localStorage.getItem("falloutRandomizerData")) {
           const res = await fetch(
             "https://raw.githubusercontent.com/Aethdae/fallout-randomizer/refs/heads/main/data.json",
           );
@@ -39,10 +39,10 @@ export default function App() {
   }, []);
   const [gameState, setGame] = useState<"three" | "vegas" | "four">("three");
   return (
-    <div className="bg-gray-800 mw-[120rem] mx-0 my-auto text-center">
+    <>
       <Header gameState={[gameState, setGame]} />
       <Game gameState={[gameState, setGame]} />
       <Footer gameState={[gameState, setGame]} />
-    </div>
+    </>
   );
 }

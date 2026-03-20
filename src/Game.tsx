@@ -3,7 +3,7 @@ import FO4 from "./FO4.tsx";
 import FO3 from "./FO3.tsx";
 import FNV from "./FNV.tsx";
 import "./ClassRandomizer.ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getKarma } from "./ClassRandomizer.ts";
 import { getChallenges } from "./ClassRandomizer.ts";
 import { getSpecial } from "./ClassRandomizer.ts";
@@ -49,6 +49,16 @@ export default function Game({ gameState }) {
     <ClassForm key={0} />,
     <RandClass key={1} randomized={randomized} />,
   ];
+
+  useEffect(() => {
+    function getOldClass() {
+      if (localStorage.getItem("mostRecentClass")) {
+        setRandomized(JSON.parse(localStorage.getItem("mostRecentClass")));
+        setRolled(true);
+      }
+    }
+    getOldClass();
+  }, []);
 
   switch (gameState[0]) {
     case states[0]:
@@ -115,6 +125,7 @@ export default function Game({ gameState }) {
           break;
       }
     }
+    localStorage.setItem("mostRecentClass", JSON.stringify(randClass));
     setRandomized(randClass);
     setRolled(true);
   }
@@ -123,7 +134,7 @@ export default function Game({ gameState }) {
     const [isDropdownShown, setDropdown] = useState(false);
 
     return (
-      <section className="bg-gray-700/40 border-4 rounded-2xl h-[36vh] px-3 md:h-[30vh] lg:h-[20vh]">
+      <section className="bg-gray-700/40 border-4 rounded-2xl h-[40vh] px-3 md:h-[30vh] lg:h-[20vh]">
         <form
           onSubmit={(event) => {
             event.preventDefault();

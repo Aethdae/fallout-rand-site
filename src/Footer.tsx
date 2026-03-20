@@ -8,7 +8,7 @@ function Footer({ gameState }) {
   return (
     <>
       {/* todo */}
-      <footer className="py-10 flex flex-col justify-center md:py-20 lg:py-40">
+      <footer className="mt-10 flex flex-col justify-center md:py-20 lg:py-40">
         <nav className="flex justify-center h-full">
           <div className="flex text-sm lg:text-xl gap-2 mx-2 md:gap-6 md:mx-6 h-full items-bottom">
             <a

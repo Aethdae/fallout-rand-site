@@ -1,3 +1,4 @@
+//@ts-nocheck
 import "./Header.css";
 const states = ["three", "vegas", "four"];
 const buttonClass = [
@@ -24,7 +25,6 @@ const bgColorStates = {
   four: "bg-four-300",
 };
 
-// @ts-ignore
 export default function Header({ gameState }) {
   return (
     <>
@@ -33,7 +33,6 @@ export default function Header({ gameState }) {
           Fallout Randomizer
         </h1>
         <nav
-          //@ts-ignore
           className={`flex gap-6 my-2 p-3 border-2 w-full min-w-20 max-w-300 ${bgColorStates[gameState[0]]} rounded-2xl justify-around`}
         >
           <button
@@ -79,7 +78,6 @@ export default function Header({ gameState }) {
       element.classList.remove("activeGame");
     });
   }
-  // @ts-ignore
   function addClass(id) {
     document.getElementById(id)?.classList.add("activeGame");
     //localStorage.setItem(k,p);
